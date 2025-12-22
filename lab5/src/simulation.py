@@ -1,6 +1,6 @@
 import random
 
-from src.models.book_buggy import PaperBook, EBook
+from lab5.src.models.book import PaperBook, EBook
 from src.library import Library
 
 def run_simulation(steps: int, seed: int | None = None) -> None:
@@ -50,7 +50,7 @@ def run_simulation(steps: int, seed: int | None = None) -> None:
 
     added_books_idx = 0
     
-    for step in range(1, steps + 1):
+    for step in range(1, steps): # 5 ошибка 
         event_type = random.randint(1, 8)
         event_name = EVENT_TYPES[event_type]
         

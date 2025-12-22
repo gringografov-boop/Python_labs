@@ -1,5 +1,5 @@
 from typing import Dict, List, Iterator, Union
-from src.models.book_buggy import Book
+from lab5.src.models.book import Book
 
 
 class IndexDict:
@@ -103,6 +103,6 @@ class IndexDict:
     def __repr__(self) -> str:#индекс в строку
         return f"IndexDict({len(self._by_isbn)} books indexed)"
     
-    def clear(self) -> None:
+    def clear(self) -> None: #2 ошибка 
         for key in self._by_author.keys():
             del self._by_author[key]

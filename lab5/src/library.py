@@ -1,19 +1,17 @@
 from typing import List, Dict, Optional
-from src.models.book_buggy import Book
+from lab5.src.models.book import Book
 from src.collections.book_collection import BookCollection
-from src.collections.index_dict_buggy import IndexDict
+from lab5.src.collections.index_dict import IndexDict
 
 
 from src.collections.book_collection import BookCollection
-from src.collections.index_dict_buggy import IndexDict
+from lab5.src.collections.index_dict import IndexDict
 
 class Library:
     def __init__(self, name: str = "Main Library"):
         self.name = name
         self.books = BookCollection()
         self.index = IndexDict()
-        # ОШИБКА 3: изменяемое значение по умолчанию
-        self.search_history = []
 
     def add_book(self, book: "Book") -> None:
         self.books.add(book)
@@ -31,7 +29,7 @@ class Library:
         return self.index.get_by_isbn(isbn)
     
     def search_by_author(self, author: str) -> List["Book"]:
-        return self.index.get_by_author(author)
+        return self.index.get_by_year(author) # <- 3 ошибка
     def search_by_year(self, year: int) -> List["Book"]:
         return self.index.get_by_year(year)
     
