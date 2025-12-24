@@ -110,3 +110,9 @@ class IndexDict:
         self._by_isbn.clear()
         self._by_author.clear()
         self._by_year.clear()
+
+    def get_authors_stats(self) -> dict[str, int]:
+        return {author: len(books) for author, books in self._by_author.items()}
+
+    def get_years_stats(self) -> dict[int, int]:
+        return {year: len(books) for year, books in self._by_year.items()}

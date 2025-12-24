@@ -12,7 +12,7 @@ from src.utils import get_file_info, is_safe_path, resolve_path
 
 class CommandHistory:
     
-    def __init__(self, history_file='.his   tory'):
+    def __init__(self, history_file='.history'):
         self.history_file = history_file
         self.history = []
         self.undo_stack = []
