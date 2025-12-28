@@ -50,7 +50,7 @@ def run_simulation(steps: int = 20, seed: int | None = None) -> None:
 
     added_books_idx = 0
     
-    for step in range(1, steps + 1):
+    for step in range(1, steps + 1 ):
         event_type = random.randint(1, 8)
         event_name = EVENT_TYPES[event_type]
         

@@ -1,5 +1,5 @@
 from typing import List, Iterator, Union
-from src.models.book_buggy import Book
+from src.models.book import Book
 
 
 class BookCollection:

@@ -1,6 +1,6 @@
 import random
 
-from lab5.src.models.book import PaperBook, EBook
+from src.models.book import PaperBook, EBook
 from src.library import Library
 
 def run_simulation(steps: int, seed: int | None = None) -> None:
@@ -50,7 +50,7 @@ def run_simulation(steps: int, seed: int | None = None) -> None:
 
     added_books_idx = 0
     
-    for step in range(1, steps): # 5 ошибка 
+    for step in range(1, steps-2): # 5 ошибка 
         event_type = random.randint(1, 8)
         event_name = EVENT_TYPES[event_type]
         
@@ -133,23 +133,15 @@ def run_simulation(steps: int, seed: int | None = None) -> None:
     for key, value in stats.items():
         print(f"{key.upper():20s}: {value}")
     
-    print(f"Топ авторы:")
-    for author, books in sorted(
-        library.index._by_author.items(),
-        key=lambda x: len(x[1]),
-        reverse=True
-    )[:5]:
-        print(f"  - {author:20s}: {len(books)} книг(и)")
+    print("Топ авторы:")
+    for author, count in library.index.get_authors_stats(limit=5):
+        print(f"  - {author:20s}: {count} книг(и)")
     
-    print(f"Топ годы:")
-    for year, books in sorted(
-        library.index._by_year.items(),
-        key=lambda x: len(x[1]),
-        reverse=True
-    )[:5]:
-        print(f"  - {year:4d}: {len(books)} книг(и)")
+    print("Топ годы:")
+    for year, count in library.index.get_years_stats(limit=5):
+        print(f"  - {year:4d}: {count} книг(и)")
     
-    print(f"Жанры:")
+    print("Жанры:")
     genres = {}
     for book in library.books:
         genres[book.genre] = genres.get(book.genre, 0) + 1

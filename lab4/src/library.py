@@ -1,20 +1,16 @@
-from typing import List, Dict, Optional, TYPE_CHECKING
-
-
-if TYPE_CHECKING:
-    from src.models.book import Book
-    from src.collections.book_collection import BookCollection
-    from src.collections.index_dict import IndexDict
-
+from typing import List, Dict, Optional
+from src.models.book import Book
 
 from src.collections.book_collection import BookCollection
 from src.collections.index_dict import IndexDict
 
 class Library:
+    
     def __init__(self, name: str = "Main Library"):
         self.name = name
         self.books = BookCollection()
         self.index = IndexDict()
+        self.search_history = [] # 4 ошибка
     
     def add_book(self, book: "Book") -> None:
         self.books.add(book)

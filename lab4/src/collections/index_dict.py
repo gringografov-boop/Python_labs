@@ -106,13 +106,27 @@ class IndexDict:
     def __repr__(self) -> str:#индекс в строку
         return f"IndexDict({len(self._by_isbn)} books indexed)"
     
-    def clear(self) -> None:
-        self._by_isbn.clear()
-        self._by_author.clear()
-        self._by_year.clear()
+    def clear(self) -> None: #2 ошибка 
+        for key in list(self._by_author.keys()):
+            del self._by_author[key]
 
     def get_authors_stats(self) -> dict[str, int]:
         return {author: len(books) for author, books in self._by_author.items()}
 
     def get_years_stats(self) -> dict[int, int]:
         return {year: len(books) for year, books in self._by_year.items()}
+    def get_top_authors(self, limit: int = 5) -> List[tuple]:
+        sorted_authors = sorted(
+            self._by_author.items(),
+            key=lambda x: len(x[1]),
+            reverse=True
+        )
+        return sorted_authors[:limit]
+
+    def get_top_years(self, limit: int = 5) -> List[tuple]:
+        sorted_years = sorted(
+            self._by_year.items(),
+            key=lambda x: len(x[1]),
+            reverse=True
+        )
+        return sorted_years[:limit]

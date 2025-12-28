@@ -71,4 +71,7 @@ class EBook(Book):
     
     def get_info(self) -> str:
         base_info = super().get_info()
+        # ошибка 1: is вместо ==
+        if self.file_size_mb == 0.0:
+            return f"{base_info} - (empty)"
         return f"{base_info} - {self.file_size_mb:.1f} МБ"

@@ -1,5 +1,5 @@
 from typing import Dict, List, Iterator, Union
-from lab5.src.models.book import Book
+from src.models.book import Book
 
 
 class IndexDict:
@@ -106,3 +106,9 @@ class IndexDict:
     def clear(self) -> None: #2 ошибка 
         for key in self._by_author.keys():
             del self._by_author[key]
+
+    def get_authors_stats(self) -> dict[str, int]:
+        return {author: len(books) for author, books in self._by_author.items()}
+
+    def get_years_stats(self) -> dict[int, int]:
+        return {year: len(books) for year, books in self._by_year.items()}
